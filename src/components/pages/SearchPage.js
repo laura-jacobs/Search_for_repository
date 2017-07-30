@@ -2,6 +2,7 @@ import React from 'react';
 import Spinner from 'react-spinkit';
 import {connect} from 'react-redux';
 import * as actions from '../../actions/actions';
+import RepoSnippit from '../RepoSnippit';
 
 class SearchPage extends React.Component {
     constructor(props) {
@@ -27,17 +28,27 @@ class SearchPage extends React.Component {
 
     render() {
         return (
-            <div>
-                  {this.props.loading && (
-          <Spinner name="ball-scale-ripple-multiple" color="coral" fadeIn="none"/>
-        )}
-                <div className="control">
-                    <input className="input is-medium" onChange={this.handlechange} type="text" placeholder="type repository name here"/>
+            <div className='component-SearchPage'>
+                <div className="columns">
+                    <div className="column is-half is-offset-one-quarter">
+                        {this.props.loading && (
+                        <Spinner name="ball-scale-ripple-multiple" color="coral" fadeIn="none"/>
+                        )}
+                        <div className="control">
+                            <input className="input is-medium" onChange={this.handlechange} type="text" placeholder="type repository name here"/>
+                        </div>
+                        <button className="button is-primary" onClick={this.handleClick}>Search</button>
+                         {this.props.repos.map(repo => <RepoSnippit
+                            key={repo.id}
+                            owner={repo.owner.login}
+                        
+                        />)} 
+                    </div>
                 </div>
-                <button className="button is-primary" onClick={this.handleClick}>Search</button>
             </div>
+            );
 
-                );
+
     }
 }
 
