@@ -3,6 +3,7 @@ import Spinner from 'react-spinkit';
 import {connect} from 'react-redux';
 import * as actions from '../../actions/actions';
 import RepoSnippit from '../RepoSnippit';
+import PropTypes from 'prop-types';
 
 class SearchPage extends React.Component {
     constructor(props) {
@@ -40,7 +41,10 @@ class SearchPage extends React.Component {
                         <button className="button is-primary" onClick={this.handleClick}>Search</button>
                          {this.props.repos.map(repo => <RepoSnippit
                             key={repo.id}
+                            avatar={repo.owner['avatar_url']}
                             owner={repo.owner.login}
+                            name={repo.name}
+
                         
                         />)} 
                     </div>
@@ -68,3 +72,9 @@ function mapStateToProps (state) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);
+
+
+SearchPage.PropTypes = {
+    loading: PropTypes.bool.isRequired,
+    repos: PropTypes.array.isRequired
+};
