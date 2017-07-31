@@ -1,23 +1,23 @@
 import * as types from './types';
-import { ROOT } from '../../webpack.config';
 import axios from 'axios';
 
+import { auth_token } from '../authorisation';
+
 const URL = 'https://api.github.com';
-
-// ?q=test+in:name
-
 
 // SEARCH FOR REPOSITORY BY NAME
 export function fetchRepoByName (searchInput) {
     return function (dispatch) {
         dispatch(fetchRepoByNameRequest());
-        axios.get(`${URL}/search/repositories?q=${searchInput}+in:name`)
-        .then (res => {
-            dispatch(fetchRepoByNameSuccess(res.data.items));
+        axios.get(`${URL}/search/repositories?q=${searchInput}+in:name`, {
+            headers: { 'Authorization': auth_token }
         })
-        .catch(err => {
-            dispatch(fetchRepoByNameError(err));
-        });
+            .then(res => {
+                dispatch(fetchRepoByNameSuccess(res.data.items));
+            })
+            .catch(err => {
+                dispatch(fetchRepoByNameError(err));
+            });
     };
 }
 
@@ -45,13 +45,15 @@ export function fetchRepoByNameError (error) {
 export function fetchRepo (user, repoName) {
     return function (dispatch) {
         dispatch(fetchRepoRequest());
-        axios.get(`${URL}/repos/${user}/${repoName}`)
-        .then (res => {
-            dispatch(fetchRepoSuccess(res.data));
+        axios.get(`${URL}/repos/${user}/${repoName}`, {
+            headers: { 'Authorization': auth_token }
         })
-        .catch(err => {
-            dispatch(fetchReadMeError(err));
-        });
+            .then(res => {
+                dispatch(fetchRepoSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(fetchReadMeError(err));
+            });
     };
 }
 
@@ -79,13 +81,15 @@ export function fetchRepoError (error) {
 export function fetchReadMe (user, repoName) {
     return function (dispatch) {
         dispatch(fetchReadMeRequest());
-        axios.get(`${URL}/repos/${user}/${repoName}/readme`)
-        .then (res => {
-            dispatch(fetchReadMeSuccess(res.data));
+        axios.get(`${URL}/repos/${user}/${repoName}/readme`, {
+            headers: { 'Authorization': auth_token }
         })
-        .catch(err => {
-            dispatch(fetchReadMeError(err));
-        });
+            .then(res => {
+                dispatch(fetchReadMeSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(fetchReadMeError(err));
+            });
     };
 }
 
@@ -113,14 +117,16 @@ export function fetchReadMeError (error) {
 export function fetchReadMeHtml (decodedReadMe) {
     return function (dispatch) {
         dispatch(fetchReadMeHtmlRequest());
-        axios.post(`${URL}/markdown`, {text: `${decodedReadMe}`})
-        .then (res => {
-            console.log(res)
-            dispatch(fetchReadMeHtmlSuccess(res.data));
+        axios.post(`${URL}/markdown`, {
+            text: `${decodedReadMe}`,
+            headers: { 'Authorization': auth_token }
         })
-        .catch(err => {
-            dispatch(fetchReadMeHtmlError(err));
-        });
+            .then(res => {
+                dispatch(fetchReadMeHtmlSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(fetchReadMeHtmlError(err));
+            });
     };
 }
 

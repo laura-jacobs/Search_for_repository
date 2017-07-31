@@ -20,7 +20,7 @@ ReactDom.render(
     <Provider store={store}>
     <Router history={history}>
         <Switch>
-        <Route path='/search' component={SearchPage} />
+        <Route exact path='/' component={SearchPage} />
         <Route path='/repos/:user/:name' component={RepoPage} /> 
         </Switch>
     </Router>

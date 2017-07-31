@@ -3,24 +3,26 @@ import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
 import Spinner from 'react-spinkit';
 import RawHtml from 'react-raw-html';
+import PropTypes from 'prop-types';
+import './styles/ReadMe.css';
 
 class ReadMe extends React.Component {
-    componentDidMount() {
+    componentDidMount () {
         const decodedMarkDown = atob(this.props.readMeInfo.content);
         this.props.fetchReadMeHtml(decodedMarkDown);
     }
     renderHtml () {
         return (
             <RawHtml.div>{this.props.readMeHtml}</RawHtml.div>
-        )
+        );
     }
-    render() {
+    render () {
         let readMeHtml = null;
         if (this.props.readMeHtml) {
             readMeHtml = this.renderHtml();
         }
         return (
-            <div className="card">
+            <div id='read-me' className="card">
                 {this.props.loading && (
                     <Spinner name="ball-scale-ripple-multiple" color="coral" fadeIn="none" />
                 )}
@@ -32,11 +34,11 @@ class ReadMe extends React.Component {
 
             </div>
 
-        )
+        );
     }
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
     return {
         fetchReadMeHtml: (decodedReadMe) => {
             dispatch(actions.fetchReadMeHtml(decodedReadMe));
@@ -44,7 +46,7 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
     return {
         readMeHtml: state.readMeHtml,
         loading: state.loading
@@ -52,3 +54,11 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReadMe);
+
+
+ReadMe.propTypes = {
+    readMeHtml: PropTypes.string,
+    fetchReadMeHtml: PropTypes.func.isRequired,
+    loading: PropTypes.bool.isRequired,
+    readMeInfo: PropTypes.object.isRequired
+};

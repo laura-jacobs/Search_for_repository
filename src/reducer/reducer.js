@@ -7,12 +7,13 @@ const initialState = {
     repoInfo: null,
     repoReadMe: null,
     readMeHtml: null
-
+    
 };
 
-function reducer(prevState = initialState, action) {
+function reducer (prevState = initialState, action) {
     if (!action) return prevState;
     const newState = Object.assign({}, prevState);
+    
     // SEARCH FOR REPO BY NAME
     if (action.type === types.FETCH_REPO_BY_NAME_REQUEST) {
         const newState = Object.assign({}, prevState);
