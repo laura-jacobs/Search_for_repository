@@ -7,13 +7,21 @@ const URL = 'https://api.github.com';
 
 // SEARCH FOR REPOSITORY BY NAME
 export function fetchRepoByName (searchInput) {
+    if(!searchInput) {
+        return;
+    }
     return function (dispatch) {
         dispatch(fetchRepoByNameRequest());
-        axios.get(`${URL}/search/repositories?q=${searchInput}+in:name`, {
+        dispatch(fetchPaginationRequest());
+        axios.get(`${URL}/search/repositories?q=${searchInput}+in:name&page=1`, {
             headers: { 'Authorization': auth_token }
         })
             .then(res => {
+                console.log(res);
                 dispatch(fetchRepoByNameSuccess(res.data.items));
+                if (res.headers && res.headers.link){
+                    dispatch(fetchPaginationSuccess(res.headers.link));
+                }
             })
             .catch(err => {
                 dispatch(fetchRepoByNameError(err));
@@ -38,6 +46,43 @@ export function fetchRepoByNameError (error) {
     return {
         type: types.FETCH_REPO_BY_NAME_ERROR,
         data: error
+    };
+}
+
+// SEARCH REPOS BY LINK
+export function fetchReposByLink (link) {
+    if(!link) {
+        return;
+    }
+    return function (dispatch) {
+        dispatch(fetchRepoByNameRequest());
+        dispatch(fetchPaginationRequest());
+        axios.get(link, {
+            headers: { 'Authorization': auth_token }
+        })
+            .then(res => {
+                console.log(res);
+                dispatch(fetchRepoByNameSuccess(res.data.items));
+                if (res.headers && res.headers.link){
+                    dispatch(fetchPaginationSuccess(res.headers.link));
+                }
+            })
+            .catch(err => {
+                dispatch(fetchRepoByNameError(err));
+            });
+    };
+}
+
+export function fetchPaginationRequest () {
+    return {
+        type: types.FETCH_PAGINATION_REQUEST
+    };
+}
+
+export function fetchPaginationSuccess (link) {
+    return {
+        type: types.FETCH_PAGINATION_SUCCESS,
+        data: link
     };
 }
 

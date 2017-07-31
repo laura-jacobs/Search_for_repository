@@ -12,8 +12,7 @@ class SearchPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchInput: '',
-            currPage: 1
+            searchInput: ''
         };
         this.handlechange = this.handlechange.bind(this);
         this.handleClick = this.handleClick.bind(this);
@@ -28,7 +27,6 @@ class SearchPage extends React.Component {
 
     handleClick(e) {
         e.preventDefault();
-        this.setState({ currPage: 1 });
         this.props.fetchRepoByName(this.state.searchInput);
     }
 
@@ -37,7 +35,7 @@ class SearchPage extends React.Component {
         if (this.props.repos.length > 0) {
             pagination = (
                 <div className='page-buttons'>
-                    <Paginator handlePrevPagination={this.handlePrevPagination} handleNextPagination={this.handleNextPagination} />
+                    <Paginator />
                 </div>
             )
         }
