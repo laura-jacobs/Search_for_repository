@@ -60,6 +60,7 @@ class SearchPage extends React.Component {
 
 
                         />)}
+                        {pagination}
                     </div>
                 </div>
             </div>
