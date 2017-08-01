@@ -1,0 +1,89 @@
+.component-NavBar{
+    background-color: #2ECC71;
+    height: 50px;
+ 
+    white-space: nowrap;
+}
+
+#logo{
+    height: 50px;
+    width: auto;
+    display: block;
+    float: right;
+    margin-right: 130px;
+    display: inline;
+    
+}
+
+#email{
+    vertical-align: middle;
+    height: 25px;
+    display: inline-block;
+    
+}
+
+.header{
+    letter-spacing: 0.7px;
+    margin-left:5px;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.e-mail{
+    margin-left: 130px;
+    padding-top: 10px;
+    width: 190px;
+    display: inline-block;
+
+}
+
+ .phone-num{
+    margin-left: 20px;
+    padding-top: 10px;
+    width: 230px;
+    display: inline-block;
+
+} 
+
+#grey-bar{
+    background-color: #ededed;
+
+    height: 60px;
+}
+
+#footer-bar{
+    background-color: #333;
+    margin-top: 10px;
+    bottom: 0;
+    width: 100%;
+   
+}
+
+.contact-deets{
+    color: #f6f6f6;
+    font-weight: 200;
+    font-size: 18px;
+    font-family: "Muli",sans-serif;
+    text-align: center;
+    padding: 10px;
+}
+
+.make-bold{
+    font-weight: bold;
+}
+.footer-contact{
+    color: #b3b3b3;
+}
+
+#location-dropper{
+    margin-top: 20px;
+    margin-left: 50%;
+}
+
+#back-button{
+    margin-top: 15px;
+    margin-left: 122px;
+    background-color: #2ECC71;
+}

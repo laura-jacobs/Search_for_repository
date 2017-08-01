@@ -21,6 +21,21 @@ class RepoPage extends React.Component {
 
     }
 
+    componentWillMount() {
+        this.setMinHeight();
+    }
+
+    componentWillReceiveProps() {
+        this.setMinHeight();
+    }
+
+    setMinHeight() {
+        let mainStyle = {
+            minHeight: (window.innerHeight - 325) + 'px'
+        };
+        this.setState({mainStyle: mainStyle});
+    }
+
     renderRepoInfo () {
         let readMe = null;
         if (this.props.repoReadMe) {
@@ -29,17 +44,19 @@ class RepoPage extends React.Component {
             />);
         }
         return (
-            <div className="columns">
+            <div className="columns" style={this.state.mainStyle}>
                 <div className="column is-10 is-offset-1">
                     <div className="panel">
                         <div id='repo-info' className="card">
-                           <Link id='back-button' to='/' className='button is-primary'>Back</Link>
+                          
+                           <div className="card-header">
+                               <h3 className='title'><span id='repo-name'>{this.props.repoInfo.name}</span></h3>
+                           </div>
                         <div className="card-content">
                             <div className="avatar">
                             <img id='repo-avatar' src={this.props.repoInfo.owner.avatar_url} alt="user-avatar" />
                             </div>
                             <div className="info">
-                            <p><span className='repo-info-title' >Repository name: </span><span className='repo-details' >{this.props.repoInfo.name}</span></p>
                             <p><span className='repo-info-title' >Repository description: </span><span className='repo-details' >{this.props.repoInfo.description}</span></p>
                             
                             <p><span className='repo-info-title' >Repo is owned by: </span><span className='repo-details' >{this.props.repoInfo.owner.login}</span></p>
@@ -47,7 +64,7 @@ class RepoPage extends React.Component {
                             <p><span className='repo-info-title' >Number of forks: </span><span className='repo-details' >{this.props.repoInfo.forks_count}</span></p>
                             <p><span className='repo-info-title' >Number of open issues: </span><span className='repo-details' >{this.props.repoInfo.open_issues_count}</span></p>
                             <p><span className='repo-info-title' >Language: </span><span className='repo-details' >{this.props.repoInfo.language}</span></p>
-                            <p><span className='repo-info-title' >Repo Link: </span><span className='repo-details' ><a href={this.props.repoInfo.html_url}>{this.props.repoInfo.html_url}</a></span></p>
+                            <p><span className='repo-info-title' >Repo Link: </span><span className='repo-details' ><a  id='repo-link' href={this.props.repoInfo.html_url}>{this.props.repoInfo.html_url}</a></span></p>
                             </div>
                         </div>
                         </div>
@@ -68,7 +85,7 @@ class RepoPage extends React.Component {
         return (
             <div className="component-RepoPage">
                 {this.props.loading && (
-                    <Spinner name="ball-scale-ripple-multiple" color="#42f4c5" fadeIn="none" />
+                    <Spinner name="ball-scale-ripple-multiple" color="#2ECC71" fadeIn="none" />
                 )}
                 {ownerInfo}
 
@@ -102,7 +119,7 @@ RepoPage.propTypes = {
     loading: PropTypes.bool.isRequired,
     fetchRepo: PropTypes.func.isRequired,
     fetchReadMe: PropTypes.func.isRequired,
-    repoInfo: PropTypes.object.isRequired,
+    repoInfo: PropTypes.object,
     repoReadMe: PropTypes.object,
     match: PropTypes.object.isRequired
 };

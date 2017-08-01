@@ -162,10 +162,13 @@ export function fetchReadMeError (error) {
 export function fetchReadMeHtml (decodedReadMe) {
     return function (dispatch) {
         dispatch(fetchReadMeHtmlRequest());
-        axios.post(`${URL}/markdown`, {
-            text: `${decodedReadMe}`,
+        const requestObj = {
+            method: 'POST',
+            url: `${URL}/markdown`,
+            data: { text: `${decodedReadMe}` },
             headers: { 'Authorization': auth_token }
-        })
+        };
+        axios(requestObj)
             .then(res => {
                 dispatch(fetchReadMeHtmlSuccess(res.data));
             })

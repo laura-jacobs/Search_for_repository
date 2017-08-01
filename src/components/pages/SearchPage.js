@@ -18,6 +18,21 @@ class SearchPage extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
+    componentWillMount() {
+        this.setMinHeight();
+    }
+
+    componentWillReceiveProps() {
+        this.setMinHeight();
+    }
+
+    setMinHeight() {
+        let mainStyle = {
+            minHeight: (window.innerHeight - 325) + 'px'
+        };
+        this.setState({mainStyle: mainStyle});
+    }
+
     handlechange (e) {
         e.preventDefault();
         this.setState({
@@ -40,9 +55,9 @@ class SearchPage extends React.Component {
             );
         }
         return (
-            <div className='component-SearchPage'>
+            <div className='component-SearchPage' style={this.state.mainStyle}>
                 {this.props.loading && (
-                    <Spinner name="ball-scale-ripple-multiple" color="#42f4c5" fadeIn="none" />
+                    <Spinner name="ball-scale-ripple-multiple" color="#2ECC71" fadeIn="none" />
                 )}
                 <div className="columns">
                     <div className="column is-half is-offset-one-quarter">
@@ -52,7 +67,7 @@ class SearchPage extends React.Component {
                                 <input className="input is-medium" onChange={this.handlechange} type="text" placeholder="type repository name here" />
                             </form>
                         </div>
-                        <button className="search button is-primary" onClick={this.handleClick}>Search</button>
+                        <button id='search-button'className="search button is-primary" onClick={this.handleClick}>Search</button>
                         {pagination}
                         {this.props.repos.map(repo => <RepoSnippit
                             key={repo.id}

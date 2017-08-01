@@ -24,7 +24,7 @@ class ReadMe extends React.Component {
         return (
             <div id='read-me' className="card">
                 {this.props.loading && (
-                    <Spinner name="ball-scale-ripple-multiple" color="#42f4c5" fadeIn="none" />
+                    <Spinner name="ball-scale-ripple-multiple" color="#2ECC71" fadeIn="none" />
                 )}
                 <div className="card-content">
                 {readMeHtml}
