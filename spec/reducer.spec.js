@@ -138,10 +138,10 @@ describe('REDUCER', function () {
             expect(newState.searchPaginationInfo).to.be.null;
         });
         it('SUCCESS: returns the updated state', () => {
-            const link = '<https://api.github.com/user/9287/repos?page=3&per_page=100>; rel="next"'
+            const link = '<https://api.github.com/user/9287/repos?page=3&per_page=100>; rel="next"';
             const action = actions.fetchPaginationSuccess(link);
             const newState = Reducer(initialState, action);
-            const parsed = parseLink(link)
+            const parsed = parseLink(link);
             expect(newState.searchPaginationInfo).to.eql(parsed);
         });
     });

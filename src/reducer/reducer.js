@@ -43,7 +43,7 @@ function reducer (prevState = initialState, action) {
 
      if (action.type === types.FETCH_PAGINATION_SUCCESS) {
         const newState = Object.assign({}, prevState);
-        //parse link into an object then set state
+        // parse link into an object then set state
         const parsed = parseLink(action.data);
         newState.searchPaginationInfo = parsed;
         return newState;

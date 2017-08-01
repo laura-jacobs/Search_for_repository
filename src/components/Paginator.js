@@ -11,22 +11,22 @@ class Paginator extends React.Component {
         this.handlePrev = this.handlePrev.bind(this);
     }
 
-    handleNext(e){
+    handleNext (e) {
         e.preventDefault();
-        if(this.props.paginationInfo.next){
+        if (this.props.paginationInfo.next) {
             this.props.fetchReposByLink(this.props.paginationInfo.next.url);
         }
     }
 
-    handlePrev(e){
+    handlePrev (e) {
         e.preventDefault();
-        if(this.props.paginationInfo.prev){
+        if (this.props.paginationInfo.prev) {
             this.props.fetchReposByLink(this.props.paginationInfo.prev.url);
         }
     }
 
     render () {
-        if(!this.props || !this.props.paginationInfo){
+        if (!this.props || !this.props.paginationInfo) {
             return null;
         }
         const paginationInfo = this.props.paginationInfo;
@@ -45,7 +45,7 @@ class Paginator extends React.Component {
     }
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
     return {
         fetchReposByLink: (link) => {
             dispatch(actions.fetchReposByLink(link));
@@ -53,10 +53,15 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
     return {
         paginationInfo: state.searchPaginationInfo
     };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Paginator);
+
+Paginator.propTypes = {
+    paginationInfo: PropTypes.object,
+    fetchReposByLink: PropTypes.func.isRequired
+};

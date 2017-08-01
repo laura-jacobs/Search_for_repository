@@ -7,7 +7,7 @@ const URL = 'https://api.github.com';
 
 // SEARCH FOR REPOSITORY BY NAME
 export function fetchRepoByName (searchInput) {
-    if(!searchInput) {
+    if (!searchInput) {
         return;
     }
     return function (dispatch) {
@@ -19,7 +19,7 @@ export function fetchRepoByName (searchInput) {
             .then(res => {
                 console.log(res);
                 dispatch(fetchRepoByNameSuccess(res.data.items));
-                if (res.headers && res.headers.link){
+                if (res.headers && res.headers.link) {
                     dispatch(fetchPaginationSuccess(res.headers.link));
                 }
             })
@@ -51,7 +51,7 @@ export function fetchRepoByNameError (error) {
 
 // SEARCH REPOS BY LINK
 export function fetchReposByLink (link) {
-    if(!link) {
+    if (!link) {
         return;
     }
     return function (dispatch) {
@@ -63,7 +63,7 @@ export function fetchReposByLink (link) {
             .then(res => {
                 console.log(res);
                 dispatch(fetchRepoByNameSuccess(res.data.items));
-                if (res.headers && res.headers.link){
+                if (res.headers && res.headers.link) {
                     dispatch(fetchPaginationSuccess(res.headers.link));
                 }
             })

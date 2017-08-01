@@ -9,7 +9,7 @@ import Paginator from '../Paginator';
 import '../styles/SearchPage.css';
 
 class SearchPage extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
         this.state = {
             searchInput: ''
@@ -18,26 +18,26 @@ class SearchPage extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handlechange(e) {
+    handlechange (e) {
         e.preventDefault();
         this.setState({
             searchInput: e.target.value
         });
     }
 
-    handleClick(e) {
+    handleClick (e) {
         e.preventDefault();
         this.props.fetchRepoByName(this.state.searchInput);
     }
 
-    render() {
+    render () {
         let pagination = null;
         if (this.props.repos.length > 0) {
             pagination = (
                 <div className='page-buttons'>
                     <Paginator />
                 </div>
-            )
+            );
         }
         return (
             <div className='component-SearchPage'>
@@ -69,7 +69,7 @@ class SearchPage extends React.Component {
     }
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
     return {
         fetchRepoByName: (searchInput) => {
             dispatch(actions.fetchRepoByName(searchInput));
@@ -77,7 +77,7 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
     return {
         repos: state.repos,
         loading: state.loading
