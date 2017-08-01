@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Spinner from 'react-spinkit';
-import {Link} from 'react-router-dom';
 import * as actions from '../../actions/actions';
 import ReadMe from '../ReadMe';
 import PropTypes from 'prop-types';
@@ -21,15 +20,15 @@ class RepoPage extends React.Component {
 
     }
 
-    componentWillMount() {
+    componentWillMount () {
         this.setMinHeight();
     }
 
-    componentWillReceiveProps() {
+    componentWillReceiveProps () {
         this.setMinHeight();
     }
 
-    setMinHeight() {
+    setMinHeight () {
         let mainStyle = {
             minHeight: (window.innerHeight - 325) + 'px'
         };

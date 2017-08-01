@@ -18,15 +18,15 @@ class SearchPage extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    componentWillMount() {
+    componentWillMount () {
         this.setMinHeight();
     }
 
-    componentWillReceiveProps() {
+    componentWillReceiveProps () {
         this.setMinHeight();
     }
 
-    setMinHeight() {
+    setMinHeight () {
         let mainStyle = {
             minHeight: (window.innerHeight - 325) + 'px'
         };

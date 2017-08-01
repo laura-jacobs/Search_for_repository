@@ -22,7 +22,7 @@ ReactDom.render(
     <Router history={history}>
         <NavBar>
         <Switch>
-        <Route exact path='/' component={SearchPage} />
+        <Route exact={true} path='/' component={SearchPage} />
         <Route path='/repos/:user/:name' component={RepoPage} /> 
         </Switch>
         </NavBar>

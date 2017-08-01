@@ -1,32 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-import '../styles/NavBar.css';
 import PropTypes from 'prop-types';
-
+import '../styles/NavBar.css';
 
 
 class NavBar extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
     }
 
-    // componentWillMount() {
-    //     let mainStyle = {
-    //         height: (window.innerHeight - 335) + 'px'
-    //     };
-    //     this.setState({mainStyle: mainStyle});
-    // }
-
-    renderBackButton() {
+    renderBackButton () {
         let currentPath = this.context.router.route.location.pathname;
-        if(currentPath === '/'){
+        if (currentPath === '/') {
             return false;
         }
         return true;
     }
 
-    render() {
+    render () {
         const renderBackButton = this.renderBackButton();
         return (
             <div>
@@ -71,5 +62,10 @@ class NavBar extends React.Component {
 
 NavBar.contextTypes = {
     router: PropTypes.object
-}
+};
 export default NavBar;
+
+NavBar.propTypes = {
+    children: PropTypes.object.isRequired,
+  
+};
