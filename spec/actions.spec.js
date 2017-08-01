@@ -105,5 +105,21 @@ describe('ACTIONS', function () {
       });
     });
   });
+  describe('fetchPaginationRequest', function () {
+    it('returns the expected action', function () {
+      expect(actions.fetchPaginationRequest()).to.eql({
+        type: types.FETCH_PAGINATION_REQUEST
+      });
+    });
+  });
+  describe('fetchPaginationSuccess', function () {
+    it('returns the expected action', function () {
+      const link = 'www.link.com';
+      expect(actions.fetchPaginationSuccess(link)).to.eql({
+        type: types.FETCH_PAGINATION_SUCCESS,
+        data: link
+      });
+    });
+  });
 });
 

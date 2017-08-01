@@ -3,6 +3,7 @@ import {
 } from 'chai';
 import Reducer from '../src/reducer/reducer';
 import * as actions from '../src/actions/actions';
+import parseLink from 'parse-link-header';
 
 describe('REDUCER', function () {
     it('is a function', () => {
@@ -118,6 +119,30 @@ describe('REDUCER', function () {
             const newState = Reducer(initialState, action);
             expect(newState.error).to.equal('error');
             expect(newState.loading).to.be.false;
+        });
+    });
+    describe('action: fetchReposByLink', () => {
+        const initialState = {
+            repos: [],
+            loading: false,
+            error: null,
+            repoInfo: null,
+            repoReadMe: null,
+            readMeHtml: null,
+            searchPaginationInfo: 'old link'
+
+        };
+        it('REQUEST: returns the updated state', () => {
+            const action = actions.fetchPaginationRequest();
+            const newState = Reducer(initialState, action);
+            expect(newState.searchPaginationInfo).to.be.null;
+        });
+        it('SUCCESS: returns the updated state', () => {
+            const link = '<https://api.github.com/user/9287/repos?page=3&per_page=100>; rel="next"'
+            const action = actions.fetchPaginationSuccess(link);
+            const newState = Reducer(initialState, action);
+            const parsed = parseLink(link)
+            expect(newState.searchPaginationInfo).to.eql(parsed);
         });
     });
 });
