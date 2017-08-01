@@ -41,11 +41,11 @@ class SearchPage extends React.Component {
         }
         return (
             <div className='component-SearchPage'>
+                        {this.props.loading && (
+                            <Spinner name="ball-scale-ripple-multiple" color="#42f4c5" fadeIn="none" />
+                        )}
                 <div className="columns">
                     <div className="column is-half is-offset-one-quarter">
-                        {this.props.loading && (
-                            <Spinner name="ball-scale-ripple-multiple" color="coral" fadeIn="none" />
-                        )}
                         <div className="control">
                             <input className="input is-medium" onChange={this.handlechange} type="text" placeholder="type repository name here" />
                         </div>

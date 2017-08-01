@@ -68,7 +68,7 @@ class RepoPage extends React.Component {
         return (
             <div className="component-RepoPage">
                 {this.props.loading && (
-                    <Spinner name="ball-scale-ripple-multiple" color="coral" fadeIn="none" />
+                    <Spinner name="ball-scale-ripple-multiple" color="#42f4c5" fadeIn="none" />
                 )}
                 {ownerInfo}
 
