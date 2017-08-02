@@ -9,7 +9,7 @@ import Paginator from '../Paginator';
 import '../styles/SearchPage.css';
 
 class SearchPage extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         this.state = {
             searchInput: ''
@@ -18,19 +18,19 @@ class SearchPage extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handlechange (e) {
+    handlechange(e) {
         e.preventDefault();
         this.setState({
             searchInput: e.target.value
         });
     }
 
-    handleClick (e) {
+    handleClick(e) {
         e.preventDefault();
         this.props.fetchRepoByName(this.state.searchInput);
     }
 
-    render () {
+    render() {
         let pagination = null;
         if (this.props.repos.length > 0) {
             pagination = (
@@ -52,20 +52,44 @@ class SearchPage extends React.Component {
                                 <input className="input is-medium" onChange={this.handlechange} type="text" placeholder="type repository name here" />
                             </form>
                         </div>
-                        <button id='search-button'className="search button is-primary" onClick={this.handleClick}>Search</button>
+                        <button id='search-button' className="search button is-primary" onClick={this.handleClick}>Search</button>
+                    </div>
+                </div>
+                <div className="columns">
+                    <div className="column is-10 is-offset-1">
+
                         {pagination}
-                        {this.props.repos.map(repo => <RepoSnippit
+                    </div>
+                </div>
+                <div className="columns">
+                    <div className="column  is-5 is-offset-1">
+                        {this.props.repos.slice(0, this.props.repos.length / 2).map(repo => <RepoSnippit
                             key={repo.id}
                             avatar={repo.owner['avatar_url']}
                             owner={repo.owner.login}
                             name={repo.name}
                             description={repo.description}
-
-
                         />)}
+                    </div>
+                    <div className="column is-5">
+
+                        {this.props.repos.slice(this.props.repos.length / 2, this.props.repos.length).map(repo => <RepoSnippit
+                            key={repo.id}
+                            avatar={repo.owner['avatar_url']}
+                            owner={repo.owner.login}
+                            name={repo.name}
+                            description={repo.description}
+                        />)}
+                    </div>
+
+                </div>
+                <div className="columns">
+                    <div className="column column is-10 is-offset-1">
                         {pagination}
+
                     </div>
                 </div>
+
             </div>
         );
 
@@ -73,7 +97,7 @@ class SearchPage extends React.Component {
     }
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
     return {
         fetchRepoByName: (searchInput) => {
             dispatch(actions.fetchRepoByName(searchInput));
@@ -81,7 +105,7 @@ function mapDispatchToProps (dispatch) {
     };
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
     return {
         repos: state.repos,
         loading: state.loading

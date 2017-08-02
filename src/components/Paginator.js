@@ -34,8 +34,8 @@ class Paginator extends React.Component {
             <div className="component-pageButtons">
                 <nav aria-label="...">
                     <ul className="pager">
-                        {paginationInfo.prev && (<li><button id='prev' className="pagination button is-primary" onClick={this.handlePrev}>Previous</button></li>)}
-                        {paginationInfo.next && (<li><button id='next' className="pagination button is-primary" onClick={this.handleNext}>Next</button></li>)}
+                        {paginationInfo.prev && (<li><a id='prev' className="pagination" onClick={this.handlePrev}>Previous</a></li>)}
+                        {paginationInfo.next && (<li><a id='next' className="pagination" onClick={this.handleNext}>Next</a></li>)}
                         
                     </ul>
                 </nav>

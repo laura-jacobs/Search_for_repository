@@ -1,11 +1,15 @@
 #next{
     float: right;
     margin-bottom: 20px;
-    background-color: #2ECC71;
+    font-weight: bold;
+    font-size: 18px;
+   color: #2ECC71;
 }
 
 #prev{
     float: left;
     margin-bottom: 20px;
-    background-color: #2ECC71;
+    font-weight: bold;
+    font-size: 18px;
+    color: #2ECC71;
 }
