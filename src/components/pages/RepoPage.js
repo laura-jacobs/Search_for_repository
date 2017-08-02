@@ -16,23 +16,6 @@ class RepoPage extends React.Component {
         const repoName = this.props.match.params.name.replace(':', '');
         this.props.fetchRepo(repoUser, repoName);
         this.props.fetchReadMe(repoUser, repoName);
-
-
-    }
-
-    componentWillMount () {
-        this.setMinHeight();
-    }
-
-    componentWillReceiveProps () {
-        this.setMinHeight();
-    }
-
-    setMinHeight () {
-        let mainStyle = {
-            minHeight: (window.innerHeight - 325) + 'px'
-        };
-        this.setState({mainStyle: mainStyle});
     }
 
     renderRepoInfo () {
@@ -43,7 +26,7 @@ class RepoPage extends React.Component {
             />);
         }
         return (
-            <div className="columns" style={this.state.mainStyle}>
+            <div className="columns">
                 <div className="column is-10 is-offset-1">
                     <div className="panel">
                         <div id='repo-info' className="card">

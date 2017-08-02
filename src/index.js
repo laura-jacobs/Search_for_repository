@@ -8,6 +8,7 @@ import {Provider} from 'react-redux';
 import createBrowserHistory from 'history/createBrowserHistory';
 
 import './css/bulma.css';
+import './components/styles/app.css';
 import SearchPage from './components/pages/SearchPage';
 import RepoPage from './components/pages/RepoPage';
 import reducer from './reducer/reducer';

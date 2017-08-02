@@ -18,21 +18,6 @@ class SearchPage extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    componentWillMount () {
-        this.setMinHeight();
-    }
-
-    componentWillReceiveProps () {
-        this.setMinHeight();
-    }
-
-    setMinHeight () {
-        let mainStyle = {
-            minHeight: (window.innerHeight - 325) + 'px'
-        };
-        this.setState({mainStyle: mainStyle});
-    }
-
     handlechange (e) {
         e.preventDefault();
         this.setState({
@@ -55,7 +40,7 @@ class SearchPage extends React.Component {
             );
         }
         return (
-            <div className='component-SearchPage' style={this.state.mainStyle}>
+            <div className='component-SearchPage'>
                 {this.props.loading && (
                     <Spinner name="ball-scale-ripple-multiple" color="#2ECC71" fadeIn="none" />
                 )}
