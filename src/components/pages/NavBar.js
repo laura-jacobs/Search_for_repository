@@ -39,9 +39,10 @@ class NavBar extends React.Component {
                     </a>
                     </div>
                    
-                    <img id='logo' src="https://www.degree53gaming.com/img/d53-logo-icon-grn.svg" alt="Degree53" />
+                   <Link to='/'><img id='logo' src="https://www.degree53gaming.com/img/d53-logo-icon-grn.svg" alt="Degree53" /></Link>
                 </header>
                 <div id='grey-bar'>
+                    <span></span>
                     {renderBackButton && (<Link id='back-button' to='/' className='button is-primary'>Back</Link>)}
                  </div>
                  <main>

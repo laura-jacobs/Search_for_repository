@@ -23,7 +23,7 @@ class RepoSnippit extends React.Component {
                         <h3>Repository Name: <span className='snippit-info'>{this.props.name}</span></h3>
                         <h3>Description: <span className='snippit-info'>{this.props.description}</span></h3>
                     <div className="content">
-                       <Link to={`/repos/:${this.props.owner}/:${this.props.name}`}>More details</Link>
+                       <Link to={`/repos/:${this.props.owner}/:${this.props.name}`}><span id='repo-link'>More details</span></Link>
 
                     </div>
 

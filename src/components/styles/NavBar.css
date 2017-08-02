@@ -50,7 +50,7 @@
 #grey-bar{
     background-color: #ededed;
 
-    height: 60px;
+    min-height: 60px;
 }
 
 #footer-bar{

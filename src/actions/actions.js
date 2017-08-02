@@ -13,7 +13,7 @@ export function fetchRepoByName (searchInput) {
     return function (dispatch) {
         dispatch(fetchRepoByNameRequest());
         dispatch(fetchPaginationRequest());
-        axios.get(`${URL}/search/repositories?q=${searchInput}+in:name&page=1&per_page=10`, {
+        axios.get(`${URL}/search/repositories?q=${searchInput}+in:name&page=1&per_page=14`, {
             headers: { 'Authorization': auth_token }
         })
             .then(res => {

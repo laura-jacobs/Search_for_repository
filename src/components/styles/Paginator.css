@@ -4,6 +4,7 @@
     font-weight: bold;
     font-size: 18px;
    color: #2ECC71;
+   
 }
 
 #prev{
@@ -13,3 +14,16 @@
     font-size: 18px;
     color: #2ECC71;
 }
+
+#next-text{
+    margin-right: 5px;
+    font-family: "Muli",sans-serif;
+    color: #495B6E;
+}
+
+#prev-text{
+    margin-left: 5px;
+    font-family: "Muli",sans-serif;
+    color: #495B6E;
+}
+
